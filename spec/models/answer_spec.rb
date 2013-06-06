@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Answer do
   let(:description) {"hello"}
   let(:answer) { FactoryGirl.create(:answer) }
-  # let(:user) { answer.user }
+  let(:user) { answer.user }
   
   context "#initialize" do
 
     context "with valid input" do
       it "creates a question with user_id" do
-        answer.user_id.should eq(user_id)
+        answer.user_id.should eq(user.id)
       end
     end
   end
