@@ -1,8 +1,15 @@
 SfOverflow::Application.routes.draw do
 
   resources :users, :except => :index
-  resources :questions
-  resources :answers, :only => [:create, :new, :edit, :update, :destroy, :show]
+  resources :questions do
+    post '/upvote' => 'votes#upvote'
+    post '/downvote' => 'votes#downvote'
+  end
+  resources :answers, :only => [:create, :new, :edit, :update, :destroy, :show] do
+    post '/upvote' => 'votes#upvote'
+    post '/downvote' => 'votes#downvote'
+  end
+
   resource :session, :only => [:create, :destroy]
 
   root :to => 'questions#index'
