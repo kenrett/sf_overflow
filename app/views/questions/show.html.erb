@@ -1,5 +1,6 @@
-<h1><%= @question.title %></h1>
-<p><%= @question.description %></p>
+<h1>question title: <%= @question.title %></h1>
+<p>question description: <%= @question.description %></p>
+<div class="vote-count"><p>question vote count: <%= @question.sum_votes %></p></div>
 <span><%= button_to "Upvote", question_upvote_path(@question) %> </span>
 <span><%= button_to "Downvote", question_downvote_path(@question) %> </span>
 <p><%= render '/answers/answer_form', :answer => @answer, :answerable => @question, :question => @question %></p>

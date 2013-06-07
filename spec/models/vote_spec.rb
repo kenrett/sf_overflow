@@ -21,16 +21,10 @@ describe Vote do
       }.to change{question.sum_votes}.from(0).to(1)
     end
 
-    it "should hide the upvote button when user upvotes" do
-      visit question_path(question)
-      click_button('Upvote')
-      page.has_content?('Upvote') == false
-    end
-
     it "should increase vote count display" do
       visit question_path(question)
       click_button('Upvote')
-      page.has_content?(1) == true
+      expect(find('.vote-count')).to have_content('1')
     end
 
     it "should not increase vote twice by same user" do
@@ -50,16 +44,10 @@ describe Vote do
       }.to change{question.sum_votes}.from(0).to(-1)
     end
 
-    it "should hide the downvote button when user downvotes" do
-      visit question_path(question)
-      click_button('Downvote')
-      page.has_content?('Downvote') == false
-    end    
-
     it "should decrease vote count display" do
       visit question_path(question)
       click_button('Downvote')
-      page.has_content?(-1) == true
+      expect(find('.vote-count')).to have_content('-1')
     end
 
     it "should not decrease vote twice by same user" do
